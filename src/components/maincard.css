@@ -1,0 +1,25 @@
+.maincard__cont {
+	width: 65%;
+	height: 65%;
+	margin-top: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	box-shadow: 6px 6px 6px black;
+
+}
+
+.maincard__h2 {
+	color: black;
+	font-size: 4rem;
+	text-align: center;
+	text-decoration: underline;
+
+}
+
+.maincard__p {
+	color: black;
+	font-size: 2rem;
+	text-align: center;
+
+}

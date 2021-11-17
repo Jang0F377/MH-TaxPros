@@ -1,0 +1,17 @@
+.navbar {
+	width: 100%;
+	height: 85px;
+	display: flex;
+	align-items: center;
+	background: darkgreen;
+}
+
+
+.navbar__links {
+	padding: 3px;
+	text-decoration: none;
+	margin-right: 16px;
+	color: #fff;
+	font-size: 1.2rem;
+	align-items: center;
+}

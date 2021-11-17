@@ -1,0 +1,59 @@
+.cardstyle {
+	text-align: center;
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: 7px 7px 2px black;
+	background: lightgrey;
+}
+
+
+
+.cc_busi {
+	background: darkgreen;
+	border-radius: 10px;
+	box-shadow: 4px 4px 2px black;
+}
+
+.cc_trust {
+	background: darkgreen;
+	border-radius: 10px;
+	box-shadow: 4px 4px 2px black;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.h2-styling {
+	text-decoration: underline;
+}
+
+.card-description {
+	font-size: 15pt;
+	text-wrap: normal;
+}
+
+
+
+.avatarstyle {
+	width: 80px;
+	height: 80px;
+	margin: auto;
+}
+
+.headingstyle {
+	font-size: 20pt;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	margin-top: 8px;
+	margin-bottom: 0;
+	text-decoration: underline;
+}
+
+.indiv__cont {
+	margin: 25px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
