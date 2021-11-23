@@ -1,7 +1,6 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction'
 
 
 const getApptProxy = "https://obscure-shelf-17700.herokuapp.com/"
@@ -39,25 +38,56 @@ const requestOptions = {
 };
 
 
+
 // Begin Code//
 
-getOpenings();
 class CalendarComponent extends Component {
 
 
-    render() {
-        return(
-            <>
-                <div id='calendar'>
 
-                </div>
-            </>
+    render() {
+        // getOpenings();
+        return(
+            <FullCalendar
+                plugins={[dayGridPlugin]}
+                initialView='dayGridMonth'
+                events={testEvents}
+            />
         );
     }
 }
 
 export default CalendarComponent;
 
+const testEvents = {
+    events: [
+        {
+            title: 'event1',
+            start: '2021-11-11T12:30:00'
+        },
+        {
+            title: 'Inperson Appt',
+            start: '2021-11-21T12:30:00'
+        },
+        {
+            title: 'Business Return',
+            start: '2021-11-27T10:30:00',
+            end: '2021-11-27T12:30:00'
+        }
+    ]
+}
+
+
+
+
+
+const eventData = (openings) => {
+    const len = openings.length;
+    for (let i = 0; i < len; i++) {
+        console.log(openings[i]);
+    }
+
+}
 
 
 function getOpenings() {
@@ -74,11 +104,11 @@ function getOpenings() {
         })
         .then(result => {
             //Result Code HERE
-            let calendarEl = document.getElementById('calendar');
+            let openAppts = result.openings;
+            eventData(openAppts);
 
-
-            console.log(result.openings.length);
         })
+        .catch(err => console.error(err));
 }
 
 

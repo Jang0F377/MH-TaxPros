@@ -1,6 +1,7 @@
 import {Container} from "@mui/material";
 import React from "react";
 import './maincard.css';
+import Typed from "react-typed";
 
 
 
@@ -10,9 +11,17 @@ const MainCard = (props) => {
         <Container style={{marginBottom: '80px',marginTop:'75px'}}>
             <img className='maincard__cont' src={props.mainCard.image} alt='IMAGE HERE'/>
             <h2 className='maincard__h2'>
-                {props.mainCard.title}
+                <Typed
+                    strings={[props.mainCard.title]}
+                    typeSpeed={35}
+                />
             </h2>
-            <p className='maincard__p'>{props.mainCard.description}</p>
+            <p className='maincard__p'>
+                <Typed
+                    strings={[props.mainCard.description]}
+                    typeSpeed={20}
+                />
+            </p>
         </Container>
     );
 }

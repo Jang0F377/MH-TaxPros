@@ -11,7 +11,7 @@ import MainCard from "./components/MainCard";
 import InfoCards from "./components/InfoCards";
 import ServiceCards from "./components/ServiceCards";
 import {SERVICES} from "./shared/services";
-import CalendarComponent from "./components/CalendarComponent";
+import CalendarComponent, {FullCal} from "./components/CalendarComponent";
 
 
 class App extends Component {
