@@ -11,7 +11,7 @@ import MainCard from "./components/MainCard";
 import InfoCards from "./components/InfoCards";
 import ServiceCards from "./components/ServiceCards";
 import {SERVICES} from "./shared/services";
-import CalendarComponent, {FullCal} from "./components/CalendarComponent";
+import CalendarComponent from "./components/CalendarComponent";
 
 
 class App extends Component {
@@ -28,7 +28,6 @@ class App extends Component {
 
 
     render() {
-
         return (
             <div style={{background: "RGBA(0,59,0,0.47)"}}>
                 <NavbarComponent/>
@@ -40,7 +39,5 @@ class App extends Component {
         );
     }
 
-
 }
-
 export default App;
