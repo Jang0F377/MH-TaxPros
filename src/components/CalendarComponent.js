@@ -1,6 +1,7 @@
 import React, {Component, useEffect, useState} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
+import {Modal} from "@mui/material";
 
 
 const getApptProxy = "https://obscure-shelf-17700.herokuapp.com/"
@@ -22,7 +23,8 @@ let toDate = 'to=2022-11-15';
 //Endpoints
 const servicesEndpoint = `${baseURL}services`;
 const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
-const employeeEndpoint = `${baseURL}employees`
+const employeeEndpoint = `${baseURL}employees`;
+const appointmentEndpoint = `${baseURL}appointments?from=2021-11-01&to=2021-12-15`
 
 // Headers
 const myHeaders = new Headers();
@@ -30,12 +32,130 @@ const myHeaders = new Headers();
     myHeaders.append("Content-Type","application/json");
     myHeaders.append("Accept", "application/json");
 
-// Req Options
+//GET Req Options
 const requestOptions = {
     method: "GET",
     headers: myHeaders,
     redirect: 'follow'
 };
+
+
+
+
+// Begin Code//
+
+function CalendarComponent() {
+    const [openAppt,setOpenAppt] = useState({});
+    const eventsTest = {events: [],color:'gold'};
+    const returnEvents = (arr) => {
+        let dataLen = arr.length;
+        for (let i=0;i<dataLen;i++) {
+            eventsTest.events.push({
+                title: 'InPerson Appt',
+                start: `${arr[i]}`
+            })
+        }
+    };
+
+    useEffect(() => {
+        fetch(getApptProxy+openingsEndpoint,requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw response
+            })
+            .then(res => {
+                let openings = res.openings;
+                setOpenAppt(openings);
+            })
+            .catch(err => {
+                console.error("Error fetching data: ", err);
+                throw err;
+            })
+    }, []);
+    returnEvents(openAppt);
+
+    return (
+        <div>
+            <FullCalendar
+                plugins={[dayGridPlugin]}
+                initialDate='2022-11-01'
+                timeZone='local'
+                initialView='dayGridMonth'
+                events={eventsTest}
+                eventClick={function(info) {
+                    alert('Event: ' + info.event.title+' '+info.event.start);
+
+                }}
+            />
+        </div>
+    );
+}
+
+export default CalendarComponent;
+
+
+function BookAppointmentModal() {
+    const [open,setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    return(
+        <div>
+            <Modal open={open} onClose={handleClose}>
+
+
+
+            </Modal>
+
+        </div>
+
+    );
+
+}
+
+
+
+
+
+// NO LONGER NEEDED FUNCTIONS USED FOR TESTING
+// const getAppointments = () => {
+//     fetch(getApptProxy+appointmentEndpoint,requestOptions)
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json()
+//             } else {
+//                 return response.error.toString;
+//             }
+//         })
+//         .then(data => {
+//             const len = data.length;
+//             console.log(data);
+//             for (let i=0;i<len;i++) {
+//                 console.log(`#${i}: ${data[i].at}`);
+//             }
+//         })
+//         .catch(err => console.error(err))
+// }
+// function getEmployees() {
+//     fetch(getApptProxy+employeeEndpoint,requestOptions)
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json();
+//             } else {
+//                 Promise.reject(response)
+//                     .then(err => {
+//                         console.log(err);
+//                     })
+//             }
+//         })
+//         .then(result => {
+//             let employeeLen = result.length;
+//             console.log(employeeLen);
+//             console.log(result);
+//         })
+// }
 // function getOpenings() {
 //     fetch(getApptProxy+openingsEndpoint,requestOptions)
 //         .then(response => {
@@ -55,118 +175,6 @@ const requestOptions = {
 //
 //         })
 //         .catch(err => console.error(err));
-// }
-
-
-
-
-// Begin Code//
-
-function CalendarComponent() {
-    const [data,setData] = useState(null);
-    const [loading,setLoading] = useState(true);
-    const [error,setError] = useState(null);
-
-    useEffect(() => {
-        fetch(getApptProxy+openingsEndpoint,requestOptions)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw response
-            })
-            .then(data => {
-                console.log(data)
-                setData(data);
-            })
-            .catch(error => {
-                console.error("Error fetching data: ", error);
-                setError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            })
-
-    }, [])
-
-    if (loading) return "Loading!!!!";
-    if (error) return  "ERROR!!!!";
-
-
-    return (
-        <>
-            <FullCalendar
-                plugins={[dayGridPlugin]}
-                initialDate='2022-11-01'
-                initialView='dayGridMonth'
-                events={testEvents}
-            />
-            {console.log(data.openings)}
-        </>
-
-    );
-
-
-
-
-
-}
-
-export default CalendarComponent;
-
-const testEvents = {
-    events: [
-        {
-            title: 'event1',
-            start: '2022-11-11T12:30:00'
-        },
-        {
-            title: 'Inperson Appt',
-            start: '2022-11-21T12:30:00'
-        },
-        {
-            title: 'Business Return',
-            start: '2022-11-27T10:30:00',
-            end: '2022-11-27T12:30:00'
-        }
-    ]
-}
-
-
-
-
-
-const eventData = (openings) => {
-    const len = openings.length;
-    for (let i = 0; i < len; i++) {
-        console.log(openings[i]);
-    }
-
-}
-
-
-
-
-
-
-// NO LONGER NEEDED FUNCTIONS USED FOR TESTING
-// function getEmployees() {
-//     fetch(getApptProxy+employeeEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 Promise.reject(response)
-//                     .then(err => {
-//                         console.log(err);
-//                     })
-//             }
-//         })
-//         .then(result => {
-//             let employeeLen = result.length;
-//             console.log(employeeLen);
-//             console.log(result);
-//         })
 // }
 // function getServices() {
 //     fetch(getApptProxy+servicesEndpoint,requestOptions)
