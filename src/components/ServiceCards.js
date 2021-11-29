@@ -3,23 +3,27 @@ import './servicecards.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDollarSign, faCoins, faBuilding,faLandmark} from "@fortawesome/free-solid-svg-icons";
 import {Col, Container, Row} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function ServiceCards(props) {
     return(
         <div>
             <div>
                 <Row className='indiv__cont'>
-                    <Col>
+                    <Col xs={12} md className='m-2 p-4'>
                         <RenderIndividualCard service={props.services[0]}/>
                     </Col>
-                    <Col>
+                    <Col xs={12} md className='m-2 p-4'>
                         <RenderBusinessCard service={props.services[1]}/>
                     </Col>
                 </Row>
             </div>
-            <Container className='indiv__cont'>
+            <Container className='mx-auto'>
                 <Row>
-                    <RenderTrustCard service={props.services[2]}/>
+                    <Col xs={12} className='mx-auto p-5'>
+                        <RenderTrustCard service={props.services[2]}/>
+                    </Col>
                 </Row>
             </Container>
         </div>

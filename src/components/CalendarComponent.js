@@ -1,7 +1,10 @@
 import React, {Component, useEffect, useState} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {Modal} from "@mui/material";
+import timeGridPlugin from '@fullcalendar/timegrid';
+import {Button, Modal} from "@mui/material";
+import {BookAppointmentModal} from "./ModalComponents";
+
 
 
 const getApptProxy = "https://obscure-shelf-17700.herokuapp.com/"
@@ -42,9 +45,13 @@ const requestOptions = {
 
 
 
-// Begin Code//
-
+// Begin FunctionComponent Code//
 function CalendarComponent() {
+    const [showModal,setShowModal] = useState(false);
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
+
+
     const [openAppt,setOpenAppt] = useState({});
     const eventsTest = {events: [],color:'gold'};
     const returnEvents = (arr) => {
@@ -78,15 +85,17 @@ function CalendarComponent() {
 
     return (
         <div>
+            <Button onClick={handleShowModal} variant='contained'>OPEN APPT MODAL</Button>
+            <BookAppointmentModal isOpen={showModal} toggle={handleCloseModal}/>
             <FullCalendar
                 plugins={[dayGridPlugin]}
                 initialDate='2022-11-01'
                 timeZone='local'
                 initialView='dayGridMonth'
                 events={eventsTest}
-                eventClick={function(info) {
-                    alert('Event: ' + info.event.title+' '+info.event.start);
-
+                eventClick={function (eCI) {
+                    let date = eCI.event.startStr;
+                    alert(`Event: ${date}`);
                 }}
             />
         </div>
@@ -94,28 +103,6 @@ function CalendarComponent() {
 }
 
 export default CalendarComponent;
-
-
-function BookAppointmentModal() {
-    const [open,setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    return(
-        <div>
-            <Modal open={open} onClose={handleClose}>
-
-
-
-            </Modal>
-
-        </div>
-
-    );
-
-}
-
-
 
 
 

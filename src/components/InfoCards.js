@@ -1,13 +1,15 @@
 import './infocards.css';
 import {Col, Container, Row} from "react-bootstrap";
 import {Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function InfoCards(props) {
     return (
         <div className='info__row'>
             {props.homecards.map(card => {
                 return (
-                    <Col key={card.id} className='info__col'>
+                    <Col lg={3} key={card.id} className='info__col'>
                         <RenderCard item={card}/>
                     </Col>
 

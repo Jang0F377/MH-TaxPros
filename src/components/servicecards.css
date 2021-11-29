@@ -26,6 +26,7 @@
 
 .h2-styling {
 	text-decoration: underline;
+	margin-top: 12px;
 }
 
 .card-description {
@@ -54,6 +55,6 @@
 	margin: 25px;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: center;
 	flex-wrap: wrap;
 }
