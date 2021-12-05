@@ -5,11 +5,25 @@
 	height: 340px;
 	border-radius: 8px;
 	background: whitesmoke;
+}
+
+@media (max-width: 1040px) {
+	.info__col {
+		margin-left: 160px;
+	}
+
+	
+}
+
+@media (min-width: 994px) {
+	.addMargin {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
 
 }
 
-.typo__card {
-}
 
 
 .info__col {

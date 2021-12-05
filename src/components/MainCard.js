@@ -12,7 +12,7 @@ const MainCard = (props) => {
     return (
         <Container style={{marginBottom: '80px',marginTop:'75px'}}>
             <img className='maincard__cont' src={props.mainCard.image} alt='IMAGE HERE'/>
-            <h2 className='maincard__h2 mt-3'>
+            <h2 className='maincard__h2 mt-5'>
                 <Typed
                     strings={[props.mainCard.title]}
                     typeSpeed={35}
@@ -21,7 +21,7 @@ const MainCard = (props) => {
             <p className='maincard__p'>
                 <Typed
                     strings={[props.mainCard.description]}
-                    typeSpeed={20}
+                    typeSpeed={35}
                 />
             </p>
         </Container>

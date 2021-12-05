@@ -48,19 +48,26 @@ const requestOptions = {
 // Begin FunctionComponent Code//
 function CalendarComponent() {
     const [showModal,setShowModal] = useState(false);
+    const [dateString,setDateString] = useState('')
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
 
 
     const [openAppt,setOpenAppt] = useState({});
-    const eventsTest = {events: [],color:'gold'};
+    const eventsTest = {events: [],backgroundColor:'gold',textColor:'black'};
     const returnEvents = (arr) => {
         let dataLen = arr.length;
+        const endTime = (time) => {
+
+
+        }
         for (let i=0;i<dataLen;i++) {
             eventsTest.events.push({
                 title: 'InPerson Appt',
-                start: `${arr[i]}`
+                start: `${arr[i]}`,
+                end: ''
             })
+            //Time returns this: 2022-11-01T09:30:00-07:00
         }
     };
 
@@ -84,18 +91,18 @@ function CalendarComponent() {
     returnEvents(openAppt);
 
     return (
-        <div>
+        <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
             <Button onClick={handleShowModal} variant='contained'>OPEN APPT MODAL</Button>
-            <BookAppointmentModal isOpen={showModal} toggle={handleCloseModal}/>
+            <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal}/>
             <FullCalendar
                 plugins={[dayGridPlugin]}
                 initialDate='2022-11-01'
                 timeZone='local'
                 initialView='dayGridMonth'
                 events={eventsTest}
-                eventClick={function (eCI) {
-                    let date = eCI.event.startStr;
-                    alert(`Event: ${date}`);
+                eventClick={function (info) {
+                    setDateString(info.event.startStr);
+                    handleShowModal();
                 }}
             />
         </div>

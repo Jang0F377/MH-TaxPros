@@ -22,5 +22,5 @@ export const SERVICES = [
         price: "$500",
         time: "Drop-Off Service Allow " +
             "~1-2 Weeks"
-    }
+    },
 ]

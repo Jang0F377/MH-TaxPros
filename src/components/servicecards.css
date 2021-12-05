@@ -7,16 +7,30 @@
 	background: lightgrey;
 }
 
+@media (max-width: 420px) {
+	.card__boxes {
+		flex-wrap: wrap;
+		margin-top: 8px;
+	}
+	
+}
+
+@media (max-width: 1430px) {
+	.disappearCol {
+		display: none;
+	}
+	
+}
 
 
 .cc_busi {
-	background: darkgreen;
+	background: rgba(0,130,0,1);
 	border-radius: 10px;
 	box-shadow: 4px 4px 2px black;
 }
 
 .cc_trust {
-	background: darkgreen;
+	background: rgba(0,130,0,1);
 	border-radius: 10px;
 	box-shadow: 4px 4px 2px black;
 	margin-top: 20px;

@@ -9,8 +9,8 @@ function InfoCards(props) {
         <div className='info__row'>
             {props.homecards.map(card => {
                 return (
-                    <Col lg={3} key={card.id} className='info__col'>
-                        <RenderCard item={card}/>
+                    <Col  key={card.id} className='info__col'>
+                        <RenderCard item={card} className='addMargin'/>
                     </Col>
 
                 );

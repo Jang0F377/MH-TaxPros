@@ -1,7 +1,6 @@
 .maincard__cont {
-	width: 65%;
+	width: 65% ;
 	height: 65%;
-	margin-top: 16px;
 	margin-left: auto;
 	margin-right: auto;
 	display: flex;
@@ -21,5 +20,17 @@
 	color: black;
 	font-size: 2rem;
 	text-align: center;
+}
 
+@media (max-width: 420px) {
+	.maincard__cont {
+		width: 85%;
+		height: 85%;
+	}
+	.maincard__h2 {
+		font-size: 3rem;
+	}
+	.maincard__p {
+		font-size: 1.5rem;
+	}
 }

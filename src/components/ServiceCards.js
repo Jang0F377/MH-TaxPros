@@ -11,19 +11,25 @@ function ServiceCards(props) {
         <div>
             <div>
                 <Row className='indiv__cont'>
+                    <Col lg={2} className='disappearCol'/>
                     <Col xs={12} md className='m-2 p-4'>
                         <RenderIndividualCard service={props.services[0]}/>
                     </Col>
+
                     <Col xs={12} md className='m-2 p-4'>
                         <RenderBusinessCard service={props.services[1]}/>
                     </Col>
+                    <Col lg={2} className='disappearCol'/>
+
                 </Row>
             </div>
             <Container className='mx-auto'>
                 <Row>
-                    <Col xs={12} className='mx-auto p-5'>
+                    <Col className='disappearCol' lg={1}/>
+                    <Col xs={12} md className='mx-auto m-3 p-5'>
                         <RenderTrustCard service={props.services[2]}/>
                     </Col>
+                    <Col className='disappearCol' lg={1}/>
                 </Row>
             </Container>
         </div>
@@ -45,13 +51,14 @@ const RenderTrustCard = ({service}) => {
                     <h3 className='headingstyle'>{service.title}</h3>
                     <p className='card-description'>{service.description}</p>
                 </CardContent>
-                <Divider light/>
-                <Box display={'flex'}>
+
+                <Box display={'flex'} className='card__boxes'>
                     <Box p={2} flex={'auto'} >
                         <h2 className='h2-styling'>Starting Price:</h2>
                         <h2>{service.price}</h2>
                         <p>per Trust</p>
                     </Box>
+                    <Divider light/>
                     <Box p={2} flex={'auto'}>
                         <h2 className='h2-styling'>Generally takes:</h2>
                         <h2>{service.time}</h2>
@@ -78,7 +85,7 @@ const RenderBusinessCard = ({service}) => {
                     <p className='card-description'>{service.description}</p>
                 </CardContent>
                 <Divider light/>
-                <Box display={'flex'}>
+                <Box display={'flex'} className='card__boxes'>
                     <Box p={2} flex={'auto'}>
                         <h2 className='h2-styling'>Starting Price:</h2>
                         <h2>{service.price}</h2>
@@ -107,7 +114,7 @@ const RenderIndividualCard = ({service}) => {
                 <p className='card-description'>{service.description}</p>
             </CardContent>
             <Divider light/>
-            <Box display={'flex'}>
+            <Box display={'flex'} className='card__boxes'>
                 <Box p={2} flex={'auto'}>
                     <h2 className='h2-styling'>Starting Price:</h2>
                     <h2>{service.price}</h2>

@@ -20,6 +20,13 @@ export const HOMECARDS = [
         image: "/assets/images/homepage-returns_0.jpg",
         description: "IRS continues to process returns and issue refunds",
         href: "https://www.irs.gov/newsroom/irs-operations-during-covid-19-mission-critical-functions-continue"
+    },
+    {
+        id:3,
+        title: "Recovery Rebate Credit",
+        image:'/assets/images/report_Isometric.svg',
+        description:"If you didn't get the full Economic Impact Payments, you may qualify for a rebate.",
+        href: 'https://www.irs.gov/newsroom/recovery-rebate-credit'
     }
 
 ]

@@ -1,5 +1,5 @@
 import React, {Component, useState} from "react";
-import {Button, Container, Form, FormControl, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import './Navbar.css';
 import mhLogo from '../shared/mh-logo.png'
 import {Alert} from "@mui/material";
@@ -7,34 +7,49 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSmileBeam} from "@fortawesome/free-solid-svg-icons/faSmileBeam";
 import {faCalendarCheck} from "@fortawesome/free-solid-svg-icons/faCalendarCheck";
 import {faGrinWink} from "@fortawesome/free-solid-svg-icons/faGrinWink";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {NavLink} from "react-router-dom";
 
 
 function NavbarComponent() {
     return (
         <>
-            <Navbar className='navbar' expand='sm'>
-                <Navbar.Brand href='/' className='navbar__logo'>
+            <Navbar className='navbar'  variant='dark' expand='md'>
+                <Navbar.Brand href='/home'>
                     <img
+                        className='navBrand'
                         src={mhLogo}
                         width='95%'
-                        height='105px'
+                        height='100px'
                         alt='IMAGE HERE'
                     />
+                    <h1 className='navBrandText'>Tax Office of Michael Haney</h1>
                 </Navbar.Brand>
-                <Nav className='me-auto'>
-                    <Nav.Link href='/' className='navbar__links'>
-                        Home
-                    </Nav.Link>
-                    <Nav.Link href='/' className='navbar__links'>
-                        About Us
-                    </Nav.Link>
-                    <Nav.Link href='/' className='navbar__links'>
-                        Contact Us
-                    </Nav.Link>
-                </Nav>
+                <Navbar.Toggle aria-controls='basic-navbar-nav'/>
+                <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='my-auto me-auto mt-2'>
+                        <NavLink to='/' className='navbar__links'>
+                            <p className='navbar__links'>
+                                Home
+                            </p>
+                        </NavLink>
+                        <NavLink to='/about' className='navbar__links'>
+                            <p className='navbar__links'>
+                                About Us
+                            </p>
+                        </NavLink>
+                        <NavLink to='/home' className='navbar__links' onClick={() => {
+                            const anchor = document.querySelector('#apptCalendar')
+                            anchor.scrollIntoView({behavior:'smooth',block:'start'})
+                        }}>
+                            <p className='navbar__links'>
+                                Schedule
+                            </p>
+                        </NavLink>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
-            {AlertBar('2')}
-
+            {/*{AlertBar('2')}*/}
         </>
 
     )
@@ -63,6 +78,10 @@ const AlertBar = (alert) => {
                     Michael's schedule is currently filled, he will open more appointments soon.
                     Please remember to book early! <FontAwesomeIcon icon={faGrinWink}/>
                 </Alert>
+            );
+        default:
+            return(
+                <div style={{fontSize: 'xx-large'}}>ALERT BANNER ERROR</div>
             )
     }
 
