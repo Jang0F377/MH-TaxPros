@@ -137,7 +137,6 @@ function CalendarComponent() {
 
     return (
         <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
-            <Button onClick={handleShowModal} variant='contained'>OPEN APPT MODAL</Button>
             <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
             <FullCalendar
                 plugins={[dayGridPlugin]}

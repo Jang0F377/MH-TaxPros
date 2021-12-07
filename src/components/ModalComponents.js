@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Divider} from "@mui/material";
 import 'yup-phone';
 import {API_KEY, bookAppointmentEndpoint, myHeaders} from "./CalendarComponent";
+import 'react-toastify/dist/ReactToastify.min.css';
+import {ToastContainer,toast} from "react-toastify";
 
 //Styled Components
 const StyledLabel = styled.label`
@@ -42,6 +44,19 @@ const MySelect = ({ label, ...props }) => {
     );
 };
 
+const successToast = () => toast.success("Appointment Successfully Booked!", {
+    position: 'bottom-center',
+    theme: "dark",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick:true,
+    pauseOnHover:true,
+    draggable:false
+})
+
+
+
+
 //YUP Appointment Schema
 const bookAppointmentSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -63,7 +78,7 @@ const bookAppointmentSchema = Yup.object().shape({
             ['In Person','Virtual Appointment', 'Business Appointment','Consultation/Discuss My Situation']
         )
         .required('Required')
-})
+});
 
 export const BookAppointmentModal = (props) => {
     const [newChosenDate,setNewChosenDate] = useState('');
@@ -120,6 +135,7 @@ export const BookAppointmentModal = (props) => {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+                successToast();
             })
             .catch(error => {
                 console.error("ERROR: ",error);
@@ -231,11 +247,10 @@ export const BookAppointmentModal = (props) => {
                     </Formik>
                 </Container>
             </Modal.Body>
+            <ToastContainer/>
         </Modal>
     );
-}
-
-
+};
 
 // const TextInputLiveFeedback = ({ label, helpText, ...props }) => {
 //     const [field, meta] = useField(props);
