@@ -1,11 +1,13 @@
 import {Col, Container, Modal, Row} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './modalcomponent.css';
 import * as Yup from 'yup'
-import {ErrorMessage, Form, Formik, useField} from "formik";
+import {Form, Formik, useField} from "formik";
 import styled from "@emotion/styled";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Divider} from "@mui/material";
+import 'yup-phone';
+import {API_KEY, bookAppointmentEndpoint, myHeaders} from "./CalendarComponent";
 
 //Styled Components
 const StyledLabel = styled.label`
@@ -50,6 +52,9 @@ const bookAppointmentSchema = Yup.object().shape({
         .min(2,'Must be at least 2 Characters!')
         .max(35,'Too Long')
         .required('Required'),
+    phone: Yup.string()
+        .phone('US', true)
+        .required(),
     email: Yup.string('Enter your email')
         .email('Enter a valid email')
         .required('Required'),
@@ -61,6 +66,66 @@ const bookAppointmentSchema = Yup.object().shape({
 })
 
 export const BookAppointmentModal = (props) => {
+    const [newChosenDate,setNewChosenDate] = useState('');
+    useEffect(() => {
+        setNewChosenDate(props.chosenDate);
+    },[props.chosenDate])
+
+    const bookAppointment = (firstName,lastName,email,phone) => {
+        console.log('Launching Booking Flow!');
+        let raw = JSON.stringify({
+            "at": newChosenDate,
+            "services": [
+                1
+            ],
+            "employee": 4351,
+            "client_with_creation": {
+                "first_name": `${firstName}`,
+                "last_name": `${lastName}`,
+                "phone_number": {
+                    "number": `${phone}`,
+                    "contact_type": "WORK"
+                },
+                "email": `${email}`,
+                "birthday": "1980-09-12",
+                "no_automatic_email": false,
+                "no_sms": false,
+                "mass_email_opt_in": true,
+                "sms_reminder_consent": true,
+                "address": {
+                    "street1": "",
+                    "street2": "",
+                    "city": "",
+                    "state": "",
+                    "postal_code": ""
+                },
+                "time_zone": "Pacific Time (US & Canada)"
+            },
+            "notes": "Jelly Belly Michael"
+        });
+        // Headers
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${API_KEY}`);
+        myHeaders.append("Content-Type","application/json");
+        myHeaders.append("Accept", "application/json");
+
+        let postRequestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch(bookAppointmentEndpoint,postRequestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error("ERROR: ",error);
+            });
+    };
+
     return(
         <Modal show={props.isOpen} onHide={props.toggle}>
             <Modal.Header closeButton style={{background:'rgba(0,110,0,1)'}}>
@@ -71,13 +136,17 @@ export const BookAppointmentModal = (props) => {
                     <Row>
                         <Col className='date-time-col'>
                             <h3 style={{textAlign:'center',textDecoration:'underline'}}>Date</h3>
-                            <h4 style={{textAlign:'center',marginTop:'6px'}}>{props.chosenDate.split('T')[0]}</h4>
+                            {newChosenDate
+                                ? <h4 style={{textAlign:'center',marginTop:'6px'}}>{newChosenDate.split('T')[0]}</h4>
+                                : <h4 style={{textAlign:'center',marginTop:'6px'}}>ERR</h4>
+
+                            }
                         </Col>
                         <Col className='date-time-col'>
                             <h3 style={{textAlign:'center',textDecoration:'underline'}}>Time</h3>
-                            {props.chosenDate
-                                ? <h4 style={{textAlign:'center',marginTop:'6px'}}>{props.chosenDate.split('T')[1].split('-')[0]}</h4>
-                                : <h4 style={{textAlign:'center',marginTop:'6px'}}>{''}</h4>
+                            {newChosenDate
+                                ? <h4 style={{textAlign:'center',marginTop:'6px'}}>{newChosenDate.split('T')[1].substring(0,5)}</h4>
+                                : <h4 style={{textAlign:'center',marginTop:'6px'}}>ERR</h4>
                             }
                         </Col>
                     </Row>
@@ -89,11 +158,16 @@ export const BookAppointmentModal = (props) => {
                             firstName: "",
                             lastName: "",
                             email: "",
-                            appointmentType: ""
+                            phone: "",
+                            appointmentType: "",
                         }}
                         validationSchema={bookAppointmentSchema}
                         onSubmit={(values) => {
-                            alert(JSON.stringify(values,null,2));
+                            let first = values.firstName;
+                            let last = values.lastName;
+                            let email = values.email;
+                            let phone = values.phone;
+                            bookAppointment(first,last,email,phone);
                         }}>
                         <Form>
                             <Row className='row_content'>
@@ -115,6 +189,17 @@ export const BookAppointmentModal = (props) => {
                                         name='lastName'
                                         type='text'
                                         placeholder='Doe'
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className='row_content'>
+                                <Col md={3} className='mt-2 p-1'>Phone</Col>
+                                <Col className='m-2 p-1'>
+                                    <MyTextInput
+                                        id='phone'
+                                        name='phone'
+                                        type='tel'
+                                        placeholder='702-123-4567'
                                     />
                                 </Col>
                             </Row>
@@ -145,7 +230,6 @@ export const BookAppointmentModal = (props) => {
                         </Form>
                     </Formik>
                 </Container>
-
             </Modal.Body>
         </Modal>
     );

@@ -12,6 +12,9 @@
 		flex-wrap: wrap;
 		margin-top: 8px;
 	}
+	.cardstyle {
+		width: 100%;
+	}
 	
 }
 
@@ -33,9 +36,6 @@
 	background: rgba(0,130,0,1);
 	border-radius: 10px;
 	box-shadow: 4px 4px 2px black;
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
 }
 
 .h2-styling {

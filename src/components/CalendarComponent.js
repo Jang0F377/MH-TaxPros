@@ -1,15 +1,14 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import {Button, Modal} from "@mui/material";
+import {Button} from "@mui/material";
 import {BookAppointmentModal} from "./ModalComponents";
 
 
 
 const getApptProxy = "https://obscure-shelf-17700.herokuapp.com/"
 const baseURL = 'https://gcmtaxpros.fullslate.com/api/v2/'
-const API_KEY = "OnXUb9Y3WEfVqLpHhvtITVVWGVj8AvkoJ4MlEOXM853vDvAP4g";
+export const API_KEY = "OnXUb9Y3WEfVqLpHhvtITVVWGVj8AvkoJ4MlEOXM853vDvAP4g";
 
 const serviceArr = {
     inPerson: 1
@@ -24,10 +23,12 @@ let fromDate = 'from=2022-11-01';
 let toDate = 'to=2022-11-15';
 
 //Endpoints
+export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[0]}`;
 const servicesEndpoint = `${baseURL}services`;
 const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
 const employeeEndpoint = `${baseURL}employees`;
-const appointmentEndpoint = `${baseURL}appointments?from=2021-11-01&to=2021-12-15`
+const appointmentEndpoint = `${baseURL}appointments?${fromDate}&${toDate}`;
+
 
 // Headers
 const myHeaders = new Headers();
@@ -35,22 +36,66 @@ const myHeaders = new Headers();
     myHeaders.append("Content-Type","application/json");
     myHeaders.append("Accept", "application/json");
 
+
 //GET Req Options
 const requestOptions = {
     method: "GET",
     headers: myHeaders,
     redirect: 'follow'
 };
-
-
-
+// const getOpenings = () => {
+//     fetch(getApptProxy+openingsEndpoint,requestOptions)
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json();
+//             } else {
+//                 Promise.reject(response)
+//                     .then(r => {
+//                         console.log(r);
+//                     })
+//             }
+//         })
+//         .then(result => {
+//             //Result Code HERE
+//             console.log(result);
+//         })
+//         .catch(err => console.error(err));
+// };
+// const getAppointments = () => {
+//     fetch(getApptProxy+appointmentEndpoint,requestOptions)
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json()
+//             } else {
+//                 return response.error.toString;
+//             }
+//         })
+//         .then(data => {
+//             const len = data.length;
+//             console.log(data);
+//             for (let i=0;i<len;i++) {
+//                 console.log(`#${i}: ${data[i].at}`);
+//             }
+//         })
+//         .catch(err => console.error(err))
+// }
+//
+// getOpenings();
+// getAppointments();
 
 // Begin FunctionComponent Code//
 function CalendarComponent() {
     const [showModal,setShowModal] = useState(false);
-    const [dateString,setDateString] = useState('')
-    const handleShowModal = () => setShowModal(true);
-    const handleCloseModal = () => setShowModal(false);
+    const [dateString,setDateString] = useState('');
+    const reload = () => window.location.reload();
+    const handleShowModal = () => {
+        setShowModal(true);
+    };
+    const handleCloseModal = () => {
+        setShowModal(false);
+        reload();
+    };
+
 
 
     const [openAppt,setOpenAppt] = useState({});
@@ -93,7 +138,7 @@ function CalendarComponent() {
     return (
         <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
             <Button onClick={handleShowModal} variant='contained'>OPEN APPT MODAL</Button>
-            <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal}/>
+            <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
             <FullCalendar
                 plugins={[dayGridPlugin]}
                 initialDate='2022-11-01'
@@ -101,7 +146,8 @@ function CalendarComponent() {
                 initialView='dayGridMonth'
                 events={eventsTest}
                 eventClick={function (info) {
-                    setDateString(info.event.startStr);
+                    let start = info.event.startStr;
+                    setDateString(start);
                     handleShowModal();
                 }}
             />
@@ -114,24 +160,6 @@ export default CalendarComponent;
 
 
 // NO LONGER NEEDED FUNCTIONS USED FOR TESTING
-// const getAppointments = () => {
-//     fetch(getApptProxy+appointmentEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json()
-//             } else {
-//                 return response.error.toString;
-//             }
-//         })
-//         .then(data => {
-//             const len = data.length;
-//             console.log(data);
-//             for (let i=0;i<len;i++) {
-//                 console.log(`#${i}: ${data[i].at}`);
-//             }
-//         })
-//         .catch(err => console.error(err))
-// }
 // function getEmployees() {
 //     fetch(getApptProxy+employeeEndpoint,requestOptions)
 //         .then(response => {
@@ -149,26 +177,6 @@ export default CalendarComponent;
 //             console.log(employeeLen);
 //             console.log(result);
 //         })
-// }
-// function getOpenings() {
-//     fetch(getApptProxy+openingsEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 Promise.reject(response)
-//                     .then(r => {
-//                         console.log(r);
-//                     })
-//             }
-//         })
-//         .then(result => {
-//             //Result Code HERE
-//             let openAppts = result.openings;
-//             eventData(openAppts);
-//
-//         })
-//         .catch(err => console.error(err));
 // }
 // function getServices() {
 //     fetch(getApptProxy+servicesEndpoint,requestOptions)

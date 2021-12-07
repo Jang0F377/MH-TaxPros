@@ -9,7 +9,7 @@ function InfoCards(props) {
         <div className='info__row'>
             {props.homecards.map(card => {
                 return (
-                    <Col  key={card.id} className='info__col'>
+                    <Col key={card.id} className='info__col'>
                         <RenderCard item={card} className='addMargin'/>
                     </Col>
 
