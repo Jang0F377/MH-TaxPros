@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
 .maincard__cont {
 	width: 65% ;
 	height: 65%;
@@ -10,9 +13,10 @@
 
 .maincard__h2 {
 	color: black;
-	font-size: 4rem;
+	font-size: 4.5rem;
 	text-align: center;
 	text-decoration: underline;
+	font-family: 'Permanent Marker', cursive;
 
 }
 

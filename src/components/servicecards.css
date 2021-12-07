@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
 .cardstyle {
 	text-align: center;
 	margin: 1rem;
@@ -44,8 +47,10 @@
 }
 
 .card-description {
-	font-size: 15pt;
+	font-size: 1.4rem;
 	text-wrap: normal;
+	font-family: 'Dosis', sans-serif;
+
 }
 
 
@@ -57,12 +62,15 @@
 }
 
 .headingstyle {
-	font-size: 20pt;
+	font-size: 1.8rem;
 	font-weight: bold;
 	letter-spacing: 0.5px;
 	margin-top: 8px;
 	margin-bottom: 0;
 	text-decoration: underline;
+	font-family: 'Fuzzy Bubbles', cursive;
+
+
 }
 
 .indiv__cont {

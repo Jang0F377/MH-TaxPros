@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
 .card__main {
 	margin: 15px;
 	box-shadow: 3px 3px 2px black;
@@ -11,8 +14,6 @@
 	.info__col {
 		margin-left: 160px;
 	}
-
-	
 }
 
 @media (min-width: 994px) {
@@ -21,8 +22,26 @@
 		margin-right: 0;
 	}
 
-
 }
+
+.typo__card {
+	font-family: 'Fuzzy Bubbles', cursive;
+	text-decoration: underline;
+	font-size: 1.2rem;
+	margin-top: 3px;
+	padding: 2px;
+	text-align: left;
+}
+
+.typo__body {
+	font-family: 'Dosis', sans-serif;
+	color: black;
+	font-size: medium;
+	padding: 2px;
+	text-align: left;
+}
+
+
 
 
 

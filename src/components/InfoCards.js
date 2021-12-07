@@ -31,12 +31,12 @@ function RenderCard ({item}) {
                 image={item.image}
             />
             <CardContent>
-                <Typography gutterBottom variant='h6' component='div' className='typo__card'>
+                <h6 className='typo__card'>
                     {item.title}
-                </Typography>
-                <Typography variant='body2' color='text.secondary'>
+                </h6>
+                <p className='typo__body'>
                     {item.description}
-                </Typography>
+                </p>
             </CardContent>
             <CardActions>
                 <Button size='small' href={item.href}>Learn More</Button>

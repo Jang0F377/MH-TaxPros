@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 .navbar {
 	width: 100%;
 	display: flex;
@@ -11,17 +12,21 @@
 	text-align: center;
 	font-size: 1.5rem;
 	color: goldenrod;
+	font-family: 'Bangers', cursive;
+
 }
 
 
 .navbar__links {
 	padding: 2px;
 	text-decoration: none;
-	font-size: 1.2rem;
+	font-size: 1.4rem;
+	letter-spacing: 2px;
 	text-align: center;
 	color: gold;
 	margin-top: 4px;
 	margin-right: 8px;
+	font-family: 'Bangers', cursive;
 
 
 }
