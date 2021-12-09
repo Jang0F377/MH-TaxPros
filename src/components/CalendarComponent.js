@@ -137,13 +137,18 @@ function CalendarComponent() {
 
     return (
         <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
-            <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
+            <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} close={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
             <FullCalendar
                 plugins={[dayGridPlugin]}
                 initialDate='2022-11-01'
                 timeZone='local'
                 initialView='dayGridMonth'
                 events={eventsTest}
+                headerToolbar={{
+                    start: '',
+                    center: 'title',
+                    end: 'today prev,next'
+                }}
                 eventClick={function (info) {
                     let start = info.event.startStr;
                     setDateString(start);

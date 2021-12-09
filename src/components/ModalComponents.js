@@ -1,4 +1,4 @@
-import {Col, Container, Modal, Row} from "react-bootstrap";
+import {Button, Col, Container, Modal, Row} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import './modalcomponent.css';
 import * as Yup from 'yup'
@@ -10,6 +10,8 @@ import 'yup-phone';
 import {API_KEY, bookAppointmentEndpoint, myHeaders} from "./CalendarComponent";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {ToastContainer,toast} from "react-toastify";
+
+const delay = millisec => new Promise(res => setTimeout(res, millisec));
 
 //Styled Components
 const StyledLabel = styled.label`
@@ -44,19 +46,6 @@ const MySelect = ({ label, ...props }) => {
     );
 };
 
-const successToast = () => toast.success("Appointment Successfully Booked!", {
-    position: 'bottom-center',
-    theme: "dark",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick:true,
-    pauseOnHover:true,
-    draggable:false
-})
-
-
-
-
 //YUP Appointment Schema
 const bookAppointmentSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -80,13 +69,64 @@ const bookAppointmentSchema = Yup.object().shape({
         .required('Required')
 });
 
+const successToast = () => toast.success("Appointment Successfully Booked!", {
+    position: 'bottom-center',
+    theme: "dark",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick:true,
+    pauseOnHover:false,
+    draggable:false
+});
+const errorToast = () => toast.error("Booking Unsuccessful. Please try again! ", {
+    position: 'bottom-center',
+    theme: "dark",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick:true,
+    pauseOnHover:false,
+    draggable:false
+});
+
+const successCheckmark = () => {
+    return (
+        <div className="animation-ctn">
+            <div className="icon icon--order-success svg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
+                    <g fill="none" stroke="#22AE73" strokeWidth="2">
+                        <circle cx="77" cy="77" r="72"
+    style={{strokeDashArray:"480px, 480px", strokeDashOffset: "960px"}}/>
+                        <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72"
+    style={{strokeDashArray:"480px, 480px", strokeDashOffset: "960px"}}/>
+                        <polyline className="st0" stroke="#fff" strokeWidth="10"
+                                  points="43.5,77.8 63.7,97.9 112.2,49.4 "
+                                  style={{strokeDashArray:"100px, 100px", strokeDashOffset: "200px"}}/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+    );
+}
+
+
 export const BookAppointmentModal = (props) => {
     const [newChosenDate,setNewChosenDate] = useState('');
+    const [apptBooked,setApptBooked] = useState(false);
+    const [errorBooking, setErrorBooking] = useState(false);
     useEffect(() => {
         setNewChosenDate(props.chosenDate);
-    },[props.chosenDate])
+        if (apptBooked) {
+            successToast();
+            console.log('SUCCESS')
+        }
+        if (errorBooking) {
+            errorToast();
+        }
+    },[apptBooked,errorBooking, props.chosenDate])
 
-    const bookAppointment = (firstName,lastName,email,phone) => {
+
+    const bookAppointment = (firstName,lastName,email,phone,apptType) => {
         console.log('Launching Booking Flow!');
         let raw = JSON.stringify({
             "at": newChosenDate,
@@ -116,14 +156,13 @@ export const BookAppointmentModal = (props) => {
                 },
                 "time_zone": "Pacific Time (US & Canada)"
             },
-            "notes": "Jelly Belly Michael"
+            "notes": `${apptType}`
         });
         // Headers
         const myHeaders = new Headers();
-        myHeaders.append("Authorization", `Bearer ${API_KEY}`);
-        myHeaders.append("Content-Type","application/json");
-        myHeaders.append("Accept", "application/json");
-
+            myHeaders.append("Authorization", `Bearer ${API_KEY}`);
+            myHeaders.append("Content-Type","application/json");
+            myHeaders.append("Accept", "application/json");
         let postRequestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -134,16 +173,23 @@ export const BookAppointmentModal = (props) => {
         fetch(bookAppointmentEndpoint,postRequestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
-                successToast();
+                if (result.status === "STATUS_BOOKED") {
+                    console.log(result);
+                    setApptBooked(true);
+                } else {
+                    console.log(result.errors);
+                    setErrorBooking(true);
+                }
+
             })
             .catch(error => {
                 console.error("ERROR: ",error);
+                setErrorBooking(true);
             });
     };
 
     return(
-        <Modal show={props.isOpen} onHide={props.toggle}>
+        <Modal show={props.isOpen} onHide={props.toggle} animation={true} style={{borderRadius: '10px'}}>
             <Modal.Header closeButton style={{background:'rgba(0,110,0,1)'}}>
                 <Modal.Title style={{fontWeight:'bold',fontSize:'2rem',color:'gold'}}>Book Appointment</Modal.Title>
             </Modal.Header>
@@ -178,12 +224,13 @@ export const BookAppointmentModal = (props) => {
                             appointmentType: "",
                         }}
                         validationSchema={bookAppointmentSchema}
-                        onSubmit={(values) => {
+                        onSubmit={async (values) => {
                             let first = values.firstName;
                             let last = values.lastName;
                             let email = values.email;
                             let phone = values.phone;
-                            bookAppointment(first,last,email,phone);
+                            let apptType = values.appointmentType
+                            bookAppointment(first,last,email,phone,apptType);
                         }}>
                         <Form>
                             <Row className='row_content'>

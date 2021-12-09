@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
 
 .cardstyle {
 	text-align: center;
@@ -44,6 +45,11 @@
 .h2-styling {
 	text-decoration: underline;
 	margin-top: 12px;
+	font-family: 'Kalam', cursive;
+}
+
+.p__styling {
+	font-family: 'Kalam', cursive;
 }
 
 .card-description {

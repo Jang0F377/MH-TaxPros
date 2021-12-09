@@ -55,14 +55,14 @@ const RenderTrustCard = ({service}) => {
                 <Box display={'flex'} className='card__boxes'>
                     <Box p={2} flex={'auto'} >
                         <h2 className='h2-styling'>Starting Price:</h2>
-                        <h2>{service.price}</h2>
-                        <p>per Trust</p>
+                        <h2 className='p__styling'>{service.price}</h2>
+                        <p className='p__styling'>per Trust</p>
                     </Box>
                     <Divider light/>
                     <Box p={2} flex={'auto'}>
                         <h2 className='h2-styling'>Generally takes:</h2>
-                        <h2>{service.time}</h2>
-                        <p>per Trust</p>
+                        <h2 className='p__styling'>{service.time}</h2>
+                        <p className='p__styling'>per Trust</p>
                     </Box>
                 </Box>
             </div>
@@ -88,13 +88,13 @@ const RenderBusinessCard = ({service}) => {
                 <Box display={'flex'} className='card__boxes'>
                     <Box p={2} flex={'auto'}>
                         <h2 className='h2-styling'>Starting Price:</h2>
-                        <h2>{service.price}</h2>
-                        <p>per Business</p>
+                        <h2 className='p__styling'>{service.price}</h2>
+                        <p className='p__styling'>per Business</p>
                     </Box>
                     <Box p={2} flex={'auto'}>
                         <h2 className='h2-styling'>Generally takes:</h2>
-                        <h2>{service.time}</h2>
-                        <p>per Business</p>
+                        <h2 className='p__styling'>{service.time}</h2>
+                        <p className='p__styling'>per Business</p>
                     </Box>
                 </Box>
             </div>
@@ -117,13 +117,13 @@ const RenderIndividualCard = ({service}) => {
             <Box display={'flex'} className='card__boxes'>
                 <Box p={2} flex={'auto'}>
                     <h2 className='h2-styling'>Starting Price:</h2>
-                    <h2>{service.price}</h2>
-                    <p>per Person</p>
+                    <h2 className='p__styling'>{service.price}</h2>
+                    <p className='p__styling'>per Person</p>
                 </Box>
                 <Box p={2} flex={'auto'}>
                     <h2 className='h2-styling'>Generally takes:</h2>
-                    <h2>{service.time}</h2>
-                    <p>per Person</p>
+                    <h2 className='p__styling'>{service.time}</h2>
+                    <p className='p__styling'>per Person</p>
                 </Box>
             </Box>
         </div>
