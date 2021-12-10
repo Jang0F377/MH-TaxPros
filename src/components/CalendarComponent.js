@@ -23,9 +23,9 @@ let fromDate = 'from=2022-11-01';
 let toDate = 'to=2022-11-15';
 
 //Endpoints
-export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[0]}`;
+export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
 const servicesEndpoint = `${baseURL}services`;
-const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
+const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[1]}&${fromDate}&${toDate}`;
 const employeeEndpoint = `${baseURL}employees`;
 const appointmentEndpoint = `${baseURL}appointments?${fromDate}&${toDate}`;
 
@@ -96,16 +96,10 @@ function CalendarComponent() {
         reload();
     };
 
-
-
     const [openAppt,setOpenAppt] = useState({});
     const eventsTest = {events: [],backgroundColor:'gold',textColor:'black'};
     const returnEvents = (arr) => {
         let dataLen = arr.length;
-        const endTime = (time) => {
-
-
-        }
         for (let i=0;i<dataLen;i++) {
             eventsTest.events.push({
                 title: 'InPerson Appt',
@@ -136,26 +130,34 @@ function CalendarComponent() {
     returnEvents(openAppt);
 
     return (
-        <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
-            <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} close={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
-            <FullCalendar
-                plugins={[dayGridPlugin]}
-                initialDate='2022-11-01'
-                timeZone='local'
-                initialView='dayGridMonth'
-                events={eventsTest}
-                headerToolbar={{
-                    start: '',
-                    center: 'title',
-                    end: 'today prev,next'
-                }}
-                eventClick={function (info) {
-                    let start = info.event.startStr;
-                    setDateString(start);
-                    handleShowModal();
-                }}
-            />
+        <div>
+            <div className='text-center'>
+                <h1>
+                    Calendar Appointments are only necessary for <strong>In-Person</strong> appointments. If you are sending in your info you do not need a Calendar Appointment.
+                </h1>
+            </div>
+            <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
+                <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} close={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
+                <FullCalendar
+                    plugins={[dayGridPlugin]}
+                    initialDate='2022-11-01'
+                    timeZone='local'
+                    initialView='dayGridMonth'
+                    events={eventsTest}
+                    headerToolbar={{
+                        start: '',
+                        center: 'title',
+                        end: 'today prev,next'
+                    }}
+                    eventClick={function (info) {
+                        let start = info.event.startStr;
+                        setDateString(start);
+                        handleShowModal();
+                    }}
+                />
+            </div>
         </div>
+
     );
 }
 

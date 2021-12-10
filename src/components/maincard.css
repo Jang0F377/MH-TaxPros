@@ -12,6 +12,19 @@
 
 }
 
+.check_buttons {
+	margin-top: 1.4rem;
+	padding: 2rem;
+	border-radius: 12px;
+
+}
+
+.display__col {
+	text-align: center;
+	padding: 1rem;
+}
+
+
 .maincard__h2 {
 	color: black;
 	font-size: 4.5rem;
