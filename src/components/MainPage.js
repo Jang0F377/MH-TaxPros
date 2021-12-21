@@ -6,6 +6,7 @@ import MainCard from "./MainCard";
 import InfoCards from "./InfoCards";
 import ServiceCards from "./ServiceCards";
 import CalendarComponent from "./CalendarComponent";
+import LatestNewsComponent from "./LatestNewsComponent";
 
 
 class MainPage extends Component {
@@ -14,7 +15,7 @@ class MainPage extends Component {
         this.state = {
             homecards: HOMECARDS,
             maincard: MHTAXPROSCARD,
-            services: SERVICES
+            services: SERVICES,
         }
     };
 
@@ -22,8 +23,8 @@ class MainPage extends Component {
         return(
             <div>
                 <MainCard mainCard={this.state.maincard}/>
+                <LatestNewsComponent/>
                 <InfoCards homecards={this.state.homecards}/>
-                <ServiceCards services={this.state.services}/>
                 <CalendarComponent/>
             </div>
         );

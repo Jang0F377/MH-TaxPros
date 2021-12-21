@@ -19,8 +19,8 @@ let employees = {
     brad: '&employees=2',
     michael: '&employees=4351'
 };
-let fromDate = 'from=2022-11-01';
-let toDate = 'to=2022-11-15';
+let fromDate = 'from=2022-10-01';
+let toDate = 'to=2022-12-15';
 
 //Endpoints
 export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
@@ -139,20 +139,47 @@ function CalendarComponent() {
             <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
                 <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} close={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
                 <FullCalendar
+
                     plugins={[dayGridPlugin]}
                     initialDate='2022-11-01'
                     timeZone='local'
                     initialView='dayGridMonth'
                     events={eventsTest}
                     headerToolbar={{
-                        start: '',
-                        center: 'title',
-                        end: 'today prev,next'
+                        start: 'january february march april',
+                        center: '',
+                        end: 'title'
                     }}
                     eventClick={function (info) {
                         let start = info.event.startStr;
                         setDateString(start);
                         handleShowModal();
+                    }}
+                    customButtons={{
+                         january: {
+                             text: 'January',
+                             click: function () {
+                                 alert('Clicked January');
+                             }
+                         },
+                        february: {
+                             text: 'February',
+                            click: function () {
+                                 alert('Clicked February')
+                            }
+                        },
+                        march: {
+                            text: 'March',
+                            click: function () {
+                                alert('Clicked March');
+                            }
+                        },
+                        april: {
+                            text: 'April',
+                            click: function () {
+                                alert('Clicked April')
+                            }
+                        }
                     }}
                 />
             </div>
