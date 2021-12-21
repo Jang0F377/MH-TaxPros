@@ -46,6 +46,11 @@ function NavbarComponent() {
                                 Schedule
                             </p>
                         </NavLink>
+                        <NavLink to='/contact' className='navbar__links'>
+                            <p className='navbar__links'>
+                                Contact
+                            </p>
+                        </NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

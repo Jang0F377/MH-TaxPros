@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
 .bodycard__title {
 	text-decoration: underline;
 }
+
+.title__h1 {
+	margin: 8px 0 4px 0;
+	text-decoration: underline;
+	font-family: 'Courgette', cursive;
+	font-size: 3.5em;
+	letter-spacing: 2px;
+}
+
+.lower__h1 {
+	font-family: 'Courgette', cursive;
+	padding: 4px;
+	margin: 8px 4px 8px 4px;
+	font-size: 2.5em;
+}
+
+.top__cal__cont {
+	background: #fff;
+	border-radius: 10px;
+
+}
+

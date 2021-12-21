@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {Button} from "@mui/material";
+import {Button, Divider} from "@mui/material";
 import {BookAppointmentModal} from "./ModalComponents";
+import {Container} from "react-bootstrap";
+import './Home.css';
 
 
 
@@ -97,7 +99,7 @@ function CalendarComponent() {
     };
 
     const [openAppt,setOpenAppt] = useState({});
-    const eventsTest = {events: [],backgroundColor:'gold',textColor:'black'};
+    const eventsTest = {events: [],backgroundColor:'gold'};
     const returnEvents = (arr) => {
         let dataLen = arr.length;
         for (let i=0;i<dataLen;i++) {
@@ -131,11 +133,15 @@ function CalendarComponent() {
 
     return (
         <div>
-            <div className='text-center'>
-                <h1>
-                    Calendar Appointments are only necessary for <strong>In-Person</strong> appointments. If you are sending in your info you do not need a Calendar Appointment.
-                </h1>
-            </div>
+            <Container  className='text-center top__cal__cont'>
+                <div className='title__h1'>
+                    Attention
+                </div>
+                <Divider/>
+                <div className='lower__h1'>
+                    Calendar appointments are only necessary for <strong>In-Person</strong> appointments. If you are sending in your info you do not need a calendar appointment.
+                </div>
+            </Container>
             <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
                 <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} close={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
                 <FullCalendar

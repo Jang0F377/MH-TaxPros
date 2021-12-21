@@ -6,6 +6,7 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import MainPage from "./components/MainPage";
 import AboutComponent from "./components/AboutComponent";
 import FooterComponent from "./components/FooterComponent";
+import ContactComponent from "./components/ContactComponent";
 
 
 
@@ -20,6 +21,7 @@ class App extends Component {
                 <Switch>
                     <Route path='/home' component={MainPage}/>
                     <Route path='/about' component={AboutComponent}/>
+                    <Route path='/contact' component={ContactComponent}/>
                     <Redirect to='/home'/>
                 </Switch>
                 <FooterComponent/>
