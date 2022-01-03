@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import {Form, Formik, useField} from "formik";
 import styled from "@emotion/styled";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Divider} from "@mui/material";
+import {Divider, TextareaAutosize} from "@mui/material";
 import 'yup-phone';
 import {API_KEY, bookAppointmentEndpoint, myHeaders} from "./CalendarComponent";
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -62,11 +62,9 @@ const bookAppointmentSchema = Yup.object().shape({
     email: Yup.string('Enter your email')
         .email('Enter a valid email')
         .required('Required'),
-    appointmentType: Yup.string()
-        .oneOf(
-            ['In Person','Virtual Appointment', 'Business Appointment','Consultation/Discuss My Situation']
-        )
-        .required('Required')
+    notes: Yup.string()
+        .min(2, 'Note must have at least 2 characters')
+        .max(150, 'Max 150 Characters')
 });
 
 const successToast = () => toast.success("Appointment Successfully Booked!", {
@@ -104,7 +102,7 @@ export const BookAppointmentModal = (props) => {
     },[apptBooked,errorBooking, props.chosenDate])
 
 
-    const bookAppointment = (firstName,lastName,email,phone,apptType) => {
+    const bookAppointment = (firstName,lastName,email,phone,notes) => {
         console.log('Launching Booking Flow!');
         let raw = JSON.stringify({
             "at": newChosenDate,
@@ -134,7 +132,7 @@ export const BookAppointmentModal = (props) => {
                 },
                 "time_zone": "Pacific Time (US & Canada)"
             },
-            "notes": `${apptType}`
+            "notes": `${notes}`
         });
         // Headers
         const myHeaders = new Headers();
@@ -169,7 +167,7 @@ export const BookAppointmentModal = (props) => {
     return(
         <Modal show={props.isOpen} onHide={props.toggle} animation={true} style={{borderRadius: '10px'}}>
             <Modal.Header closeButton style={{background:'rgba(0,110,0,1)'}}>
-                <Modal.Title style={{fontWeight:'bold',fontSize:'2rem',color:'gold'}}>Book Appointment</Modal.Title>
+                <Modal.Title style={{fontWeight:'bold',fontSize:'2rem',color:'gold'}} className='modal__title'>Book Appointment</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{background:'rgba(255,255,255,1)'}}>
                 <Container>
@@ -199,7 +197,7 @@ export const BookAppointmentModal = (props) => {
                             lastName: "",
                             email: "",
                             phone: "",
-                            appointmentType: "",
+                            notes: "",
                         }}
                         validationSchema={bookAppointmentSchema}
                         onSubmit={async (values) => {
@@ -207,8 +205,8 @@ export const BookAppointmentModal = (props) => {
                             let last = values.lastName;
                             let email = values.email;
                             let phone = values.phone;
-                            let apptType = values.appointmentType
-                            bookAppointment(first,last,email,phone,apptType);
+                            let notes = values.notes
+                            bookAppointment(first,last,email,phone,notes);
                         }}>
                         <Form>
                             <Row className='row_content'>
@@ -258,13 +256,14 @@ export const BookAppointmentModal = (props) => {
                             <Row className='row_content'>
                                 <Col sm={3} className='mt-2 p-1'>Appointment Type</Col>
                                 <Col className='m-2 p-1'>
-                                    <MySelect name='appointmentType'>
-                                        <option value=''>Select an Appointment Type</option>
-                                        <option value='In Person'>In Person</option>
-                                        <option value='Virtual Appointment'>Virtual Appointment</option>
-                                        <option value='Business Appointment'>Business Appointment</option>
-                                        <option value='Consultation/Discuss My Situation'>Consultation/Discuss My Situation</option>
-                                    </MySelect>
+                                    <TextareaAutosize
+                                        minRows={3}
+                                        maxRows={5}
+                                        id='notes'
+                                        name='notes'
+                                        type='text'
+                                        placeholder='Any Notes (Optional)'
+                                    />
                                 </Col>
                             </Row>
                             <button className='bg-dark text-light p-2 mt-4'> Book Appointment</button>

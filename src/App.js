@@ -17,14 +17,12 @@ class App extends Component {
     render() {
         return (
             <div style={{background: "RGBA(20,20,20,0.60)"}}>
-                <NavbarComponent/>
                 <Switch>
-                    <Route path='/home' component={MainPage}/>
+                    <Route exact path='/home' component={MainPage}/>
                     <Route path='/about' component={AboutComponent}/>
                     <Route path='/contact' component={ContactComponent}/>
                     <Redirect to='/home'/>
                 </Switch>
-                <FooterComponent/>
             </div>
         );
     }

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
+.my__h1 {
+	font-family: 'Merriweather', serif;
+	text-align: center;
+	font-size: 2.7rem;
+
+}
+
+
+.my__h2 {
+	font-family: 'Merriweather',serif;
+	text-align: center;
+	color: black;
+	margin-bottom: 4px;
+	text-decoration: underline;
+}
+
+.my__p {
+	font-family: 'Merriweather',serif;
+	text-align: center;
+	color: white;
+	margin-top: 4px;
+}

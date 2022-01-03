@@ -7,6 +7,8 @@ import InfoCards from "./InfoCards";
 import ServiceCards from "./ServiceCards";
 import CalendarComponent from "./CalendarComponent";
 import LatestNewsComponent from "./LatestNewsComponent";
+import NavbarComponent from "./NavbarComponent";
+import FooterComponent from "./FooterComponent";
 
 
 class MainPage extends Component {
@@ -22,10 +24,12 @@ class MainPage extends Component {
     render() {
         return(
             <div>
+                <NavbarComponent/>
                 <MainCard mainCard={this.state.maincard}/>
                 <LatestNewsComponent/>
                 <InfoCards homecards={this.state.homecards}/>
                 <CalendarComponent/>
+                <FooterComponent/>
             </div>
         );
     }

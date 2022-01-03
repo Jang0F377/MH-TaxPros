@@ -1,8 +1,17 @@
+import NavbarComponent from "./NavbarComponent";
+import FooterComponent from "./FooterComponent";
+import {Container} from "react-bootstrap";
 
 
 function AboutComponent() {
     return(
-        <h2 style={{textAlign:'center'}}>ABOUT US PAGE</h2>
+        <div>
+            <NavbarComponent/>
+            <Container>
+                About Component
+            </Container>
+            <FooterComponent/>
+        </div>
     );
 }
 

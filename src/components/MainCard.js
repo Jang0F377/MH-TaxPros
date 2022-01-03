@@ -11,18 +11,18 @@ const MainCard = (props) => {
     return (
         <Container style={{marginBottom: '80px',marginTop:'75px'}}>
             <img className='maincard__cont' src={props.mainCard.image} alt='IMAGE HERE'/>
-            <h2 className='maincard__h2 mt-4'>
-                <Typed
-                    strings={[props.mainCard.title]}
-                    typeSpeed={35}
-                />
-            </h2>
-            <p className='maincard__p'>
-                <Typed
-                    strings={[props.mainCard.description]}
-                    typeSpeed={35}
-                />
-            </p>
+            {/*<h2 className='maincard__h2 mt-4'>*/}
+            {/*    <Typed*/}
+            {/*        strings={[props.mainCard.title]}*/}
+            {/*        typeSpeed={35}*/}
+            {/*    />*/}
+            {/*</h2>*/}
+            {/*<p className='maincard__p'>*/}
+            {/*    <Typed*/}
+            {/*        strings={[props.mainCard.description]}*/}
+            {/*        typeSpeed={35}*/}
+            {/*    />*/}
+            {/*</p>*/}
             <Row className='mt-5'>
                 <Col className='display__col'>
                     <Button size='lg' variant='success' href='https://www.irs.gov/refunds' className='check_buttons'>

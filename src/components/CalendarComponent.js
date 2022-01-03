@@ -3,7 +3,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
 import {Button, Divider} from "@mui/material";
 import {BookAppointmentModal} from "./ModalComponents";
-import {Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
+
 import './Home.css';
 
 
@@ -21,13 +24,16 @@ let employees = {
     brad: '&employees=2',
     michael: '&employees=4351'
 };
-let fromDate = 'from=2022-10-01';
-let toDate = 'to=2022-12-15';
+let fromDate = 'from=2022-01-01';
+let toDate = 'to=2022-03-01';
+let fromDate2 = 'from=2022-03-02';
+let toDate2 = 'to=2022-04-30';
 
 //Endpoints
 export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
 const servicesEndpoint = `${baseURL}services`;
-const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[1]}&${fromDate}&${toDate}`;
+const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
+const openingsEndpoint2 =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate2}&${toDate2}`;
 const employeeEndpoint = `${baseURL}employees`;
 const appointmentEndpoint = `${baseURL}appointments?${fromDate}&${toDate}`;
 
@@ -37,6 +43,7 @@ const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${API_KEY}`);
     myHeaders.append("Content-Type","application/json");
     myHeaders.append("Accept", "application/json");
+
 
 
 //GET Req Options
@@ -133,10 +140,20 @@ function CalendarComponent() {
 
     return (
         <div>
-            <Container  className='text-center top__cal__cont'>
-                <div className='title__h1'>
-                    Attention
-                </div>
+            <Container className='text-center top__cal__cont'>
+                <Row>
+                    <Col>
+                        <FontAwesomeIcon icon={faExclamationTriangle} size={"4x"} className='mt-3 mb-2'/>
+                    </Col>
+                    <Col>
+                        <div className='title__h1'>
+                            Attention
+                        </div>
+                    </Col>
+                    <Col>
+                        <FontAwesomeIcon icon={faExclamationTriangle} size={"4x"} className='mt-3 mb-2'/>
+                    </Col>
+                </Row>
                 <Divider/>
                 <div className='lower__h1'>
                     Calendar appointments are only necessary for <strong>In-Person</strong> appointments. If you are sending in your info you do not need a calendar appointment.
@@ -147,45 +164,18 @@ function CalendarComponent() {
                 <FullCalendar
 
                     plugins={[dayGridPlugin]}
-                    initialDate='2022-11-01'
                     timeZone='local'
                     initialView='dayGridMonth'
                     events={eventsTest}
                     headerToolbar={{
-                        start: 'january february march april',
-                        center: '',
-                        end: 'title'
+                        start: '',
+                        center: 'title',
+                        end: 'today prev,next'
                     }}
                     eventClick={function (info) {
                         let start = info.event.startStr;
                         setDateString(start);
                         handleShowModal();
-                    }}
-                    customButtons={{
-                         january: {
-                             text: 'January',
-                             click: function () {
-                                 alert('Clicked January');
-                             }
-                         },
-                        february: {
-                             text: 'February',
-                            click: function () {
-                                 alert('Clicked February')
-                            }
-                        },
-                        march: {
-                            text: 'March',
-                            click: function () {
-                                alert('Clicked March');
-                            }
-                        },
-                        april: {
-                            text: 'April',
-                            click: function () {
-                                alert('Clicked April')
-                            }
-                        }
                     }}
                 />
             </div>

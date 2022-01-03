@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 
 .maincard__cont {
@@ -31,7 +32,7 @@
 	font-size: 4.5rem;
 	text-align: center;
 	text-decoration: underline;
-	font-family: 'Permanent Marker', cursive;
+	font-family: 'Bangers', cursive;
 
 }
 
@@ -40,7 +41,7 @@
 	color: black;
 	font-size: 2.5rem;
 	text-align: center;
-	font-family: 'Permanent Marker', cursive;
+	font-family: 'Bangers', cursive;
 }
 
 @media (max-width: 420px) {
