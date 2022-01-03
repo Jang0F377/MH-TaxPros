@@ -14,7 +14,7 @@ function ContactComponent() {
     return(
         <div>
             <NavbarComponent/>
-            <Container>
+            <Container className='mb-4'>
                 <Row style={{marginTop:'1.3rem'}}>
                     <h1 className='my__h1'>
                         GET IN TOUCH

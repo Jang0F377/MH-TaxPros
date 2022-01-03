@@ -6,14 +6,13 @@ import {BookAppointmentModal} from "./ModalComponents";
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationTriangle} from "@fortawesome/free-solid-svg-icons";
-
 import './Home.css';
+import {CONSTANTS} from "../constants";
 
 
 
 const getApptProxy = "https://obscure-shelf-17700.herokuapp.com/"
 const baseURL = 'https://gcmtaxpros.fullslate.com/api/v2/'
-export const API_KEY = "OnXUb9Y3WEfVqLpHhvtITVVWGVj8AvkoJ4MlEOXM853vDvAP4g";
 
 const serviceArr = {
     inPerson: 1
@@ -40,7 +39,7 @@ const appointmentEndpoint = `${baseURL}appointments?${fromDate}&${toDate}`;
 
 // Headers
 const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${API_KEY}`);
+    myHeaders.append("Authorization", `Bearer ${CONSTANTS.API_KEY}`);
     myHeaders.append("Content-Type","application/json");
     myHeaders.append("Accept", "application/json");
 
@@ -52,45 +51,6 @@ const requestOptions = {
     headers: myHeaders,
     redirect: 'follow'
 };
-// const getOpenings = () => {
-//     fetch(getApptProxy+openingsEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 Promise.reject(response)
-//                     .then(r => {
-//                         console.log(r);
-//                     })
-//             }
-//         })
-//         .then(result => {
-//             //Result Code HERE
-//             console.log(result);
-//         })
-//         .catch(err => console.error(err));
-// };
-// const getAppointments = () => {
-//     fetch(getApptProxy+appointmentEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json()
-//             } else {
-//                 return response.error.toString;
-//             }
-//         })
-//         .then(data => {
-//             const len = data.length;
-//             console.log(data);
-//             for (let i=0;i<len;i++) {
-//                 console.log(`#${i}: ${data[i].at}`);
-//             }
-//         })
-//         .catch(err => console.error(err))
-// }
-//
-// getOpenings();
-// getAppointments();
 
 // Begin FunctionComponent Code//
 function CalendarComponent() {
@@ -106,6 +66,7 @@ function CalendarComponent() {
     };
 
     const [openAppt,setOpenAppt] = useState({});
+    const [openAppt2,setOpenAppt2] = useState({});
     const eventsTest = {events: [],backgroundColor:'gold'};
     const returnEvents = (arr) => {
         let dataLen = arr.length;
@@ -119,7 +80,7 @@ function CalendarComponent() {
         }
     };
 
-    useEffect(() => {
+    function getOpeningsFlow() {
         fetch(getApptProxy+openingsEndpoint,requestOptions)
             .then(response => {
                 if (response.ok) {
@@ -135,8 +96,34 @@ function CalendarComponent() {
                 console.error("Error fetching data: ", err);
                 throw err;
             })
+
+    }
+    function getOpeningsFlow2() {
+        fetch(getApptProxy+openingsEndpoint2,requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw response
+            })
+            .then(res => {
+                let openings = res.openings;
+                setOpenAppt2(openings);
+            })
+            .catch(err => {
+                console.error("Error fetching data: ", err);
+                throw err;
+            })
+
+    }
+
+    useEffect(() => {
+        getOpeningsFlow();
+        getOpeningsFlow2();
+
     }, []);
     returnEvents(openAppt);
+    returnEvents(openAppt2);
 
     return (
         <div>
@@ -160,7 +147,7 @@ function CalendarComponent() {
                 </div>
             </Container>
             <div style={{background:'#f7f7f7',padding:'2px',margin:'2px'}} id='apptCalendar'>
-                <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} close={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
+                <BookAppointmentModal isOpen={showModal} chosenDate={dateString} toggle={handleCloseModal} fsAPI={bookAppointmentEndpoint} />
                 <FullCalendar
 
                     plugins={[dayGridPlugin]}
@@ -224,3 +211,42 @@ export default CalendarComponent;
 //         })
 //         .catch(err => console.log(err));
 // }
+// const getOpenings = () => {
+//     fetch(getApptProxy+openingsEndpoint,requestOptions)
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json();
+//             } else {
+//                 Promise.reject(response)
+//                     .then(r => {
+//                         console.log(r);
+//                     })
+//             }
+//         })
+//         .then(result => {
+//             //Result Code HERE
+//             console.log(result);
+//         })
+//         .catch(err => console.error(err));
+// };
+// const getAppointments = () => {
+//     fetch(getApptProxy+appointmentEndpoint,requestOptions)
+//         .then(response => {
+//             if (response.ok) {
+//                 return response.json()
+//             } else {
+//                 return response.error.toString;
+//             }
+//         })
+//         .then(data => {
+//             const len = data.length;
+//             console.log(data);
+//             for (let i=0;i<len;i++) {
+//                 console.log(`#${i}: ${data[i].at}`);
+//             }
+//         })
+//         .catch(err => console.error(err))
+// }
+//
+// getOpenings();
+// getAppointments();

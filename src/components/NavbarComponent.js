@@ -9,7 +9,6 @@ import {faCalendarCheck} from "@fortawesome/free-solid-svg-icons/faCalendarCheck
 import {faGrinWink} from "@fortawesome/free-solid-svg-icons/faGrinWink";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NavLink, Redirect} from "react-router-dom";
-import redirect from "react-router-dom/es/Redirect";
 
 
 function NavbarComponent() {
@@ -32,11 +31,6 @@ function NavbarComponent() {
                         <NavLink to='/' className='navbar__links'>
                             <p className='navbar__links'>
                                 Home
-                            </p>
-                        </NavLink>
-                        <NavLink to='/about' className='navbar__links'>
-                            <p className='navbar__links'>
-                                About Us
                             </p>
                         </NavLink>
                         <NavLink to='/home' className='navbar__links' onClick={() => {

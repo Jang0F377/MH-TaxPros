@@ -16,7 +16,7 @@ function LatestNewsComponent() {
                 <Divider/>
                 {TAXDATES.map(item => {
                     return(
-                        <Row style={{marginTop:'10px'}}>
+                        <Row key={item.id} style={{marginTop:'10px'}}>
                             <Col xs={1} md={2} style={{padding:'4px',margin:'4px 0px 0px 8px',textAlign:'left', borderRight:'1px solid black',borderBottom:'1px solid black'}}>
                                 {item.date}
                             </Col>
