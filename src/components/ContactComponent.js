@@ -3,7 +3,6 @@ import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMapMarkedAlt, faPhone,faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {Avatar} from "@mui/material";
-import Typed from "react-typed";
 import NavbarComponent from "./NavbarComponent";
 import BlankFooter from "./BlankFooter";
 
@@ -32,36 +31,36 @@ function ContactComponent() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col xs={4}>
                         <h1 className='my__h2'>ADDRESS</h1>
                     </Col>
-                    <Col>
+                    <Col xs={4}>
                         <h1 className='my__h2'>PHONE</h1>
                     </Col>
-                    <Col>
+                    <Col xs={4}>
                         <h1 className='my__h2'>EMAIL</h1>
                     </Col>
                 </Row>
                 <Row className='mb-4'>
-                    <Col>
+                    <Col xs={4}>
                         <p className='my__p'>
                             8460 S. Eastern Ave. Suite A<br/>
                             Las Vegas, NV 89123<br/>
                             Northeast corner of Eastern and Wigwam
                         </p>
                     </Col>
-                    <Col>
+                    <Col xs={4}>
                         <h5 className='my__p'>
                             Cell/Primary
                         </h5>
                         <p className='my__p'>
-                            <a style={{color:'white'}} href='tel:+17022776916'> 702-277-6916</a><br/>
+                            <a style={{color:'white'}} className='my__p' href='tel:+17022776916'> 702-277-6916</a><br/>
                             Text OR Call
                         </p>
                     </Col>
-                    <Col>
+                    <Col xs={4}>
                         <p className='my__p'>
-                            <a style={{color:'white'}} href='mailto:michael@mhtaxpro.com'>michael@mhtaxpro.com</a>
+                            <a style={{color:'white'}} className='my__p' href='mailto:michael@mhtaxpro.com'>michael@mhtaxpro.com</a>
                         </p>
                     </Col>
                 </Row>

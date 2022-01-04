@@ -23,4 +23,22 @@
 	text-align: center;
 	color: white;
 	margin-top: 4px;
+	word-wrap: break-word;
+}
+
+@media (max-width: 473px) {
+	.my__h2 {
+		font-size: 1.5rem;
+	}
+	.my__p {
+		font-size: 1rem;
+	}
+}
+@media (max-width: 396px) {
+	.my__h2 {
+		font-size: 1.3rem;
+	}
+	.my__p {
+		font-size: 0.9rem;
+	}
 }
