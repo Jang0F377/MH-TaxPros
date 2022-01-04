@@ -23,6 +23,23 @@
 	background: #fff;
 	border-radius: 10px;
 	margin-bottom: 2.5em;
-
+	padding: 2px;
 }
 
+
+@media (max-width: 570px) {
+	.title__h1 {
+		font-size: 3rem;
+	}
+	.lower__h1 {
+		font-size: 2rem;
+	}
+}
+@media (max-width: 450px) {
+	.title__h1 {
+		font-size: 2.5rem;
+	}
+	.lower__h1 {
+		font-size: 1.5rem;
+	}
+}

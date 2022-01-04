@@ -127,15 +127,15 @@ function CalendarComponent() {
         <div>
             <Container className='text-center top__cal__cont'>
                 <Row>
-                    <Col>
+                    <Col xs={12} sm>
                         <FontAwesomeIcon icon={faExclamationTriangle} size={"4x"} className='mt-3 mb-2'/>
                     </Col>
-                    <Col>
+                    <Col xs={12} sm>
                         <div className='title__h1'>
                             Attention
                         </div>
                     </Col>
-                    <Col>
+                    <Col xs={12} sm>
                         <FontAwesomeIcon icon={faExclamationTriangle} size={"4x"} className='mt-3 mb-2'/>
                     </Col>
                 </Row>
