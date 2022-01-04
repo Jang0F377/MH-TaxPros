@@ -30,11 +30,9 @@ let toDate2 = 'to=2022-04-30';
 
 //Endpoints
 export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
-const servicesEndpoint = `${baseURL}services`;
 const openingsEndpoint =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
 const openingsEndpoint2 =  `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate2}&${toDate2}`;
-const employeeEndpoint = `${baseURL}employees`;
-const appointmentEndpoint = `${baseURL}appointments?${fromDate}&${toDate}`;
+
 
 
 // Headers
@@ -174,79 +172,3 @@ function CalendarComponent() {
 export default CalendarComponent;
 
 
-
-// NO LONGER NEEDED FUNCTIONS USED FOR TESTING
-// function getEmployees() {
-//     fetch(getApptProxy+employeeEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 Promise.reject(response)
-//                     .then(err => {
-//                         console.log(err);
-//                     })
-//             }
-//         })
-//         .then(result => {
-//             let employeeLen = result.length;
-//             console.log(employeeLen);
-//             console.log(result);
-//         })
-// }
-// function getServices() {
-//     fetch(getApptProxy+servicesEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 Promise.reject(response);
-//                 console.log(response);
-//             }
-//         })
-//         .then(result => {
-//             let resLen = result.length;
-//             console.log(resLen);
-//             console.log(result);
-//         })
-//         .catch(err => console.log(err));
-// }
-// const getOpenings = () => {
-//     fetch(getApptProxy+openingsEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 Promise.reject(response)
-//                     .then(r => {
-//                         console.log(r);
-//                     })
-//             }
-//         })
-//         .then(result => {
-//             //Result Code HERE
-//             console.log(result);
-//         })
-//         .catch(err => console.error(err));
-// };
-// const getAppointments = () => {
-//     fetch(getApptProxy+appointmentEndpoint,requestOptions)
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json()
-//             } else {
-//                 return response.error.toString;
-//             }
-//         })
-//         .then(data => {
-//             const len = data.length;
-//             console.log(data);
-//             for (let i=0;i<len;i++) {
-//                 console.log(`#${i}: ${data[i].at}`);
-//             }
-//         })
-//         .catch(err => console.error(err))
-// }
-//
-// getOpenings();
-// getAppointments();

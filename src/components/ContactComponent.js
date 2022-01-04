@@ -5,7 +5,6 @@ import {faMapMarkedAlt, faPhone,faEnvelope} from "@fortawesome/free-solid-svg-ic
 import {Avatar} from "@mui/material";
 import Typed from "react-typed";
 import NavbarComponent from "./NavbarComponent";
-import FooterComponent from "./FooterComponent";
 import BlankFooter from "./BlankFooter";
 
 

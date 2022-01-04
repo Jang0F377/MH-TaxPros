@@ -55,43 +55,42 @@ function NavbarComponent() {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            {/*{AlertBar('2')}*/}
         </>
 
     )
 }
 
 
-const AlertBar = (alert) => {
-    switch (alert) {
-        case "1":
-            return(
-                <Alert style={{textAlign:"center", fontSize:"1rem"}} severity='warning'>
-                    Michael's schedule fills up very quickly, schedule an appointment
-                    while they are still available  <a href='/'> <FontAwesomeIcon icon={faCalendarCheck}/></a>
-                </Alert>
-            );
-        case "2":
-            return (
-                <Alert style={{textAlign:"center",fontSize:'1rem'}} severity='info' >
-                    Michael has <b>NOT</b> opened his schedule for bookings yet.
-                    Please check back around the beginning of January! <FontAwesomeIcon icon={faSmileBeam}/>
-                </Alert>
-            );
-        case "3":
-            return(
-                <Alert style={{textAlign:"center",fontSize:'1rem'}} severity='error'>
-                    Michael's schedule is currently filled, he will open more appointments soon.
-                    Please remember to book early! <FontAwesomeIcon icon={faGrinWink}/>
-                </Alert>
-            );
-        default:
-            return(
-                <div style={{fontSize: 'xx-large'}}>ALERT BANNER ERROR</div>
-            )
-    }
-
-}
+// const AlertBar = (alert) => {
+//     switch (alert) {
+//         case "1":
+//             return(
+//                 <Alert style={{textAlign:"center", fontSize:"1rem"}} severity='warning'>
+//                     Michael's schedule fills up very quickly, schedule an appointment
+//                     while they are still available  <a href='/'> <FontAwesomeIcon icon={faCalendarCheck}/></a>
+//                 </Alert>
+//             );
+//         case "2":
+//             return (
+//                 <Alert style={{textAlign:"center",fontSize:'1rem'}} severity='info' >
+//                     Michael has <b>NOT</b> opened his schedule for bookings yet.
+//                     Please check back around the beginning of January! <FontAwesomeIcon icon={faSmileBeam}/>
+//                 </Alert>
+//             );
+//         case "3":
+//             return(
+//                 <Alert style={{textAlign:"center",fontSize:'1rem'}} severity='error'>
+//                     Michael's schedule is currently filled, he will open more appointments soon.
+//                     Please remember to book early! <FontAwesomeIcon icon={faGrinWink}/>
+//                 </Alert>
+//             );
+//         default:
+//             return(
+//                 <div style={{fontSize: 'xx-large'}}>ALERT BANNER ERROR</div>
+//             )
+//     }
+//
+// }
 
 
 

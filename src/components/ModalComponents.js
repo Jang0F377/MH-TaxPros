@@ -12,12 +12,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import {ToastContainer,toast} from "react-toastify";
 import {CONSTANTS} from "../constants";
 
-const delay = millisec => new Promise(res => setTimeout(res, millisec));
 
 //Styled Components
-const StyledLabel = styled.label`
-  margin-top: 1rem;
-`;
 const MyTextInput = ({ label, ...props }) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
     // which we can spread on <input> and alse replace ErrorMessage entirely.
@@ -40,20 +36,6 @@ const MyTextAutosizeInput = ({ label, ...props }) => {
         <>
             <label htmlFor={props.id || props.name}>{label}</label>
             <TextareaAutosize className="text-input" {...field} {...props} />
-            {meta.touched && meta.error ? (
-                <div className='error text-danger' style={{fontWeight:'bold'}}>{meta.error}</div>
-            ) : null}
-        </>
-    );
-};
-const MySelect = ({ label, ...props }) => {
-    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-    // which we can spread on <input> and alse replace ErrorMessage entirely.
-    const [field, meta] = useField(props);
-    return (
-        <>
-            <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-            <select {...field} {...props} />
             {meta.touched && meta.error ? (
                 <div className='error text-danger' style={{fontWeight:'bold'}}>{meta.error}</div>
             ) : null}

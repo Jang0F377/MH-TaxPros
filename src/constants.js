@@ -1,0 +1,3 @@
+export const CONSTANTS = {
+    API_KEY: "OnXUb9Y3WEfVqLpHhvtITVVWGVj8AvkoJ4MlEOXM853vDvAP4g",
+}
