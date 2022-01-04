@@ -1,6 +1,6 @@
 import './infocards.css';
-import {Col, Container, Row} from "react-bootstrap";
-import {Button, Card, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
+import {Col} from "react-bootstrap";
+import {Button, CardActions, CardContent, CardMedia} from "@mui/material";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

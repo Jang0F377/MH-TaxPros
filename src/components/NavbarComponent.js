@@ -1,12 +1,7 @@
-import React, {Component, useState} from "react";
-import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import React from "react";
+import {Nav, Navbar } from "react-bootstrap";
 import './Navbar.css';
 import mhLogo from '../shared/mh-logo.png'
-import {Alert} from "@mui/material";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSmileBeam} from "@fortawesome/free-solid-svg-icons/faSmileBeam";
-import {faCalendarCheck} from "@fortawesome/free-solid-svg-icons/faCalendarCheck";
-import {faGrinWink} from "@fortawesome/free-solid-svg-icons/faGrinWink";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NavLink, Redirect} from "react-router-dom";
 
@@ -21,7 +16,7 @@ function NavbarComponent() {
                         src={mhLogo}
                         width='95%'
                         height='100px'
-                        alt='IMAGE HERE'
+                        alt='Not Loading'
                     />
                     <h1 className='navBrandText'>Tax Office of Michael Haney</h1>
                 </Navbar.Brand>

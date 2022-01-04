@@ -1,13 +1,12 @@
-import {Button, Col, Container, Modal, Row} from "react-bootstrap";
+import { Col, Container, Modal, Row} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import './modalcomponent.css';
 import * as Yup from 'yup'
 import {Form, Formik, useField} from "formik";
-import styled from "@emotion/styled";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Divider, TextareaAutosize} from "@mui/material";
 import 'yup-phone';
-import {bookAppointmentEndpoint, myHeaders} from "./CalendarComponent";
+import {bookAppointmentEndpoint} from "./CalendarComponent";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {ToastContainer,toast} from "react-toastify";
 import {CONSTANTS} from "../constants";

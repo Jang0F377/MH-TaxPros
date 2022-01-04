@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {Button, Divider} from "@mui/material";
+import {Divider} from "@mui/material";
 import {BookAppointmentModal} from "./ModalComponents";
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

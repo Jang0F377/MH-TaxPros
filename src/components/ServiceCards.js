@@ -1,4 +1,4 @@
-import {Avatar, Box, Card, CardContent, Divider} from "@mui/material";
+import {Avatar, Box, CardContent, Divider} from "@mui/material";
 import './servicecards.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDollarSign, faCoins, faBuilding,faLandmark} from "@fortawesome/free-solid-svg-icons";

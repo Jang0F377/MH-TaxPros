@@ -1,11 +1,8 @@
 import './App.css';
-import React, {useState, useEffect, Component} from "react";
-import {Col, Container} from "react-bootstrap";
-import NavbarComponent from "./components/NavbarComponent";
+import React, { Component} from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
 import MainPage from "./components/MainPage";
 import AboutComponent from "./components/AboutComponent";
-import FooterComponent from "./components/FooterComponent";
 import ContactComponent from "./components/ContactComponent";
 
 

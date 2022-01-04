@@ -4,7 +4,6 @@ import {MHTAXPROSCARD} from "../shared/maincard";
 import {SERVICES} from "../shared/services";
 import MainCard from "./MainCard";
 import InfoCards from "./InfoCards";
-import ServiceCards from "./ServiceCards";
 import CalendarComponent from "./CalendarComponent";
 import LatestNewsComponent from "./LatestNewsComponent";
 import NavbarComponent from "./NavbarComponent";
