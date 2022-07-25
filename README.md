@@ -6,12 +6,12 @@ It offers a central place for clients to book (using a third party API) appointm
 the IRS site to check on refunds, as well as cards featuring recent articles on their site. 
 
 # Technologies used:
-  React
-  Formik for forms
-  React-bootstrap
-  FullCalendar for calendar.
-  Font Awesome icons
-  Fullslate API for scheduling appointments (its the appointment site he was already using I just utilized the API).
+ * React
+ * Formik for forms
+ * React-bootstrap
+ * FullCalendar for calendar.
+ * Font Awesome icons
+ * Fullslate API for scheduling appointments (its the appointment site he was already using I just utilized the API).
  
 # What did I learn
   This was my first public site to go live and was the first where I was working with a deadline.
