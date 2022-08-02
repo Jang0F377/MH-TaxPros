@@ -23,10 +23,10 @@ let employees = {
     brad: '&employees=2',
     michael: '&employees=4351'
 };
-let fromDate = 'from=2022-01-01';
-let toDate = 'to=2022-03-01';
-let fromDate2 = 'from=2022-03-02';
-let toDate2 = 'to=2022-04-30';
+let fromDate = 'from=2022-08-01';
+let toDate = 'to=2022-10-01';
+let fromDate2 = 'from=2022-10-02';
+let toDate2 = 'to=2022-11-16';
 
 //Endpoints
 export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
