@@ -1,5 +1,5 @@
 # Tax Office of Michael Haney
-# (Refactor using tailwind, modernizing look in progress!)
+### (Refactor using tailwind, modernizing look in progress! https://github.com/Jang0F377/MHTaxPros-Refactor)
 
 This was a website I built for a professional friend who prepares personal and corporate tax returns.
 It offers a central place for clients to book (using a third party API) appointments with links to 
