@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "name": "MH-TaxPro Gateway",
+  "port": 8080,
+  "timeout": "3000ms",
+  "host": ["https://mhtaxpro.com/"],
+  "endpoints": [
+    {
+      "endpoint": "/api/openings",
+      "input_query_strings": ["*"],
+      "input_headers": ["*"],
+      "method": "GET",
+      "backend": [
+        {
+          "method": "GET",
+          "host": ["https://gcmtaxpros.fullslate.com/"],
+          "url_pattern": "/api/v2/openings"
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "security/cors": {
+      "allow_origins": ["*"],
+      "allow_headers": ["*"],
+      "expose_headers": ["*"],
+      "allow_methods": ["GET"],
+      "allow_credentials": false
+    }
+  }
+}

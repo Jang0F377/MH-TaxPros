@@ -11,7 +11,7 @@ import { CONSTANTS } from "../constants";
 
 const getApptProxy = "https://obscure-shelf-17700.herokuapp.com/";
 const baseURL = "https://gcmtaxpros.fullslate.com/api/v2/";
-
+const testURL = "https://mhtaxpro.com/api/openings";
 const serviceArr = {
   inPerson: 1,
 };
@@ -27,14 +27,16 @@ let toDate2 = "to=2023-04-18";
 
 //Endpoints
 export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
-const openingsEndpoint = `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
-const openingsEndpoint2 = `${baseURL}openings?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate2}&${toDate2}`;
-
+const openingsEndpoint = `${testURL}?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
+const openingsEndpoint2 = `${testURL}?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate2}&${toDate2}`;
+console.log(openingsEndpoint);
+console.log(openingsEndpoint2);
 // Headers
 const myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${CONSTANTS.API_KEY}`);
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Accept", "application/json");
+myHeaders.append("Access-Control-Allow-Origin", "*");
 
 //GET Req Options
 const requestOptions = {
@@ -72,7 +74,7 @@ function CalendarComponent() {
   };
 
   function getOpeningsFlow() {
-    fetch(getApptProxy + openingsEndpoint, requestOptions)
+    fetch(openingsEndpoint, requestOptions)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -89,7 +91,7 @@ function CalendarComponent() {
       });
   }
   function getOpeningsFlow2() {
-    fetch(getApptProxy + openingsEndpoint2, requestOptions)
+    fetch(openingsEndpoint2, requestOptions)
       .then((response) => {
         if (response.ok) {
           return response.json();
