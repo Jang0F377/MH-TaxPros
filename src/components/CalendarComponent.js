@@ -9,9 +9,9 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import "./Home.css";
 import { CONSTANTS } from "../constants";
 
-const URL = "http://localhost:3030/1 "; //first-openings";
-const URL2 = "http://localhost:3030/2"; //more-openings";
-const BOOK_URL = "http://localhost:3030/book-appointments";
+const URL = "http://127.0.0.1:3030/1 "; //first-openings";
+const URL2 = "http://127.0.0.1:3030/2"; //more-openings";
+const BOOK_URL = "http://127.0.0.1:3030/book-appointments";
 
 //Endpoints
 export const bookAppointmentEndpoint = BOOK_URL;
