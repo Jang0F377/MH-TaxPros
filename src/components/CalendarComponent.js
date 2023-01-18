@@ -9,28 +9,12 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import "./Home.css";
 import { CONSTANTS } from "../constants";
 
-const getApptProxy = "https://stark-scrubland-64104.herokuapp.com/";
-const baseURL = "https://gcmtaxpros.fullslate.com/api/v2/";
-const testURL = "https://mhtaxpro.com/api/openings";
-const serviceArr = {
-  inPerson: 1,
-};
-let userTypeArray = ["BUSINESS_USER", "CLIENT"];
-let employees = {
-  brad: "&employees=2",
-  michael: "&employees=4351",
-};
-let fromDate = "from=2023-01-01";
-let toDate = "to=2023-03-01";
-let fromDate2 = "from=2023-03-02";
-let toDate2 = "to=2023-04-18";
+const URL = "http://localhost:3030/1 "; //first-openings";
+const URL2 = "http://localhost:3030/2"; //more-openings";
+const BOOK_URL = "http://localhost:3030/book-appointments";
 
 //Endpoints
-export const bookAppointmentEndpoint = `${getApptProxy}${baseURL}appointments?user_type=${userTypeArray[1]}`;
-const openingsEndpoint = `${baseURL}?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate}&${toDate}`;
-const openingsEndpoint2 = `${baseURL}?services=${serviceArr.inPerson}${employees.michael}&user_type=${userTypeArray[0]}&${fromDate2}&${toDate2}`;
-console.log(openingsEndpoint);
-console.log(openingsEndpoint2);
+export const bookAppointmentEndpoint = BOOK_URL;
 // Headers
 const myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${CONSTANTS.API_KEY}`);
@@ -73,7 +57,7 @@ function CalendarComponent() {
   };
 
   function getOpeningsFlow() {
-    fetch(getApptProxy + openingsEndpoint, requestOptions)
+    fetch(URL, requestOptions)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -81,6 +65,7 @@ function CalendarComponent() {
         throw response;
       })
       .then((res) => {
+        console.log(res);
         let openings = res.openings;
         setOpenAppt(openings);
       })
@@ -90,7 +75,7 @@ function CalendarComponent() {
       });
   }
   function getOpeningsFlow2() {
-    fetch(getApptProxy + openingsEndpoint2, requestOptions)
+    fetch(URL2, requestOptions)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -98,6 +83,7 @@ function CalendarComponent() {
         throw response;
       })
       .then((res) => {
+        console.log(res);
         let openings = res.openings;
         setOpenAppt2(openings);
       })
